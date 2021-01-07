@@ -36,10 +36,10 @@ const backgroundGenerator = {
 }
 
 
-const setBodyBackgroundColor = () => {
+function setBodyBackgroundColor() {
         bodyRef.setAttribute("style", "background:" + colors[randomIntegerFromInterval(0, colors.length - 1)] + ";")
 }
         
-const randomIntegerFromInterval = (min, max) => {
+function randomIntegerFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
