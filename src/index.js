@@ -13,22 +13,24 @@ const startButtonRef = document.querySelector('button[data-action="start"]');
 const stopButtonRef = document.querySelector('button[data-action="stop"]');
 const bodyRef = document.querySelector('body')
 
-startButtonRef.addEventListener('click', event => { backgroundGenerator.start() })
-stopButtonRef.addEventListener('click', event => {backgroundGenerator.stop()})
+startButtonRef.addEventListener('click', event => { backgroundGenerator.start(event) })
+stopButtonRef.addEventListener('click', event => {backgroundGenerator.stop(event)})
 
 const backgroundGenerator = {
     isActive: false,
     intervalId: null,
-    start() {
+    start(e) {
         if (this.isActive) {
             return;
         }
+        e.target.disabled = true;
         this.isActive = true;
         this.intervalId = setInterval(setBodyBackgroundColor, 1000)
 
     },
-    stop() {
+    stop(e) {
         clearInterval(this.intervalId);
+        startButtonRef.disabled = false;
         this.intervalId = null;
         this.isActive = false;
         bodyRef.removeAttribute("style");
